@@ -5,6 +5,7 @@ const signup = require("./routes/sign-up.js");
 const login = require("./routes/log-in.js");
 const logout = require("./routes/log-out.js");
 const confessions = require("./routes/confessions.js");
+// const sessions = require("./middleware/sessions.js");
 
 const body = express.urlencoded({ extended: false });
 const cookies = cookieParser(process.env.COOKIE_SECRET);
@@ -16,6 +17,9 @@ server.use((req, res, next) => {
   console.log(`${time} ${req.method} ${req.url}`);
   next();
 });
+
+// server.use(sessions);
+
 server.use(cookies);
 server.get("/", home.get);
 server.get("/sign-up", signup.get);
